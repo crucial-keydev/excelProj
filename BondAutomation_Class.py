@@ -172,13 +172,16 @@ def make_bond_prf(bond):
     ws = wb['INDBK']    
 
 
-    ws['I24'].value = f"{bond.date}, {str(year)}"
-    ws['C26'].value = liss[0].upper() #PROPIETOR
-    ws['C27'].value = bond.contractor
-    ws['H26'].value = liss[1].upper() #ADDRESS
-    ws['B52'].value = liss[0].upper() #PROPIETOR
-    ws['G52'].value = liss[1].upper() #ADDRESS
-    ws['H43'].value = f"{bond.date}, {str(year)}"
+    ws['I25'].value = f"{bond.date}, {str(year)}"
+    ws['C27'].value = bond.prop
+    ws['C28'].value = bond.contractor
+    ws['H27'].value = bond.prop_address
+    ws['H45'].value = f"{bond.date}, {str(year)}"
+    ws['B54'].value = bond.prop
+    ws['G54'].value = bond.prop_address
+
+    
+
     ws = wb['OR']
 
     payment = getpayment(rating_amount)
@@ -199,9 +202,9 @@ def make_bond_prf(bond):
 
 
     ws['E17'].value = rating_amount
-    ws['A5'].value = f"{bond.date}, {str(year)}"
+    ws['B5'].value = f"{bond.date}, {str(year)}"
     ws['B6'].value = bond.contractor
-    ws['A8'].value = liss[1]
+    ws['A8'].value = bond.prop_address
     ws['B12'].value = first_line_or.upper()
     ws['B13'].value = second_line_or.upper()
     ws['B15'].value = 'G(13)-' + bond.bond_no
