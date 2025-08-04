@@ -11,8 +11,6 @@ ctc_date = config["ctc_date"]
 manager = config["manager"]
 ctc_manager = config["ctc_manager"]
 ctc_manager_date = config["ctc_manager_date"]
-
-
 today = datetime.datetime.now()
 year = int(today.year)
 
@@ -225,7 +223,7 @@ def make_bond_sty(bond):
     ws['B38'].value = f"(Php{bond.coverage:,d}.00; Philippine Currencies)"
     ws['D49'].value = f"{bond.date}, {str(year + 1)}"
     ws['F56'].value = f"{bond.date}, {str(year)}" 
-    ws['C63'].value = bond.prop
+    ws['B63'].value = bond.prop
     ws['H63'].value = manager
     ws['B64'].value = f"Prop./Manager - {bond.contractor}"
 
