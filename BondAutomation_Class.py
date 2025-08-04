@@ -101,18 +101,17 @@ def make_bond_prf(bond):
     ws['J10'].value = 'G(13)-' + bond.bond_no
     ws['D16'].value = bond.contractor
     ws['H16'].value =  liss[1].upper()
-    ws['D21'].value = bond.agency
-    ws['I21'].value = first_line_prf.upper()
-    ws['A22'].value = second_line_prf.upper() + "PESOS ONLY"
-    ws['F22'].value = bond.coverage
-    ws['B30'].value = bond.contract_name    
+    ws['H21'].value = bond.agency
+    ws['C22'].value = bond.coverage_in_words.upper()
+    ws['J22'].value = bond.coverage
+    ws['B30'].value = bond.contract_name        
     ws['B37'].value = bond.coverage_in_words.upper() + "PESOS ONLY"
     ws['B38'].value = f"(Php{bond.coverage:,d}.00; Philippine Currencies)"
     ws['C49'].value = f"{bond.date}, {str(year + 1)}"    
     ws['F56'].value = f"{bond.date}, {str(year)}"
-    ws['C63'].value = liss[0].upper()
-    ws['G63'].value = manager
-    ws['G64'].value = f"Prop/Manager-{bond.contractor}"
+    ws['H64'].value = bond.prop
+    ws['B64'].value = manager
+
     
 
 
@@ -124,13 +123,21 @@ def make_bond_prf(bond):
 
     ws['J3'].value = 'G(13)-' + bond.bond_no
     ws['G6'].value = f"{bond.date}, {str(year)}"
-    ws['B13'].value = liss[0].upper()
-    ws['G13'].value = liss[1].upper()
+    ws['E11'].value = f"{ctc}"
+    ws['I11'].value = f"{ctc_date}"
+    ws['B13'].value = manager
+    ws['E13'].value = ctc_manager
+    ws['I13'].value = ctc_manager_date
+    ws['B14'].value = bond.prop
+    ws['G14'].value = bond.prop_address
     ws['C23'].value = f"{bond.date}, {str(year)}"
     ws['A44'].value = first_line_ack.upper()    
-    ws['A45'].value = second_line_ack.upper() + "PESOS ONLY"    
+    ws['A45'].value = second_line_ack.upper() + "PESOS ONLY"
     ws['F44'].value = bond.coverage
+    ws['H49'].value = manager   
     ws['H54'].value = f"{bond.date}, {str(year)}"
+    ws['J55'].value= ctc_manager
+    ws['H56'].value = ctc_manager_date
 
     ws = wb['IND']
 
