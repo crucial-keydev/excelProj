@@ -122,7 +122,7 @@ def make_bond_prf(bond):
     second_line_ack = turntosentence(second_ack)
 
     ws['J3'].value = 'G(13)-' + bond.bond_no
-    ws['G6'].value = f"{bond.date}, {str(year)}"
+    ws['G7'].value = f"{bond.date}, {str(year)}"
     ws['E11'].value = f"{ctc}"
     ws['I11'].value = f"{ctc_date}"
     ws['B13'].value = manager
@@ -131,6 +131,7 @@ def make_bond_prf(bond):
     ws['B14'].value = bond.prop
     ws['G14'].value = bond.prop_address
     ws['C23'].value = f"{bond.date}, {str(year)}"
+    ws['C38'].value = f"{manager} - BRANCH MANAGER"
     ws['A44'].value = first_line_ack.upper()    
     ws['A45'].value = second_line_ack.upper() + "PESOS ONLY"
     ws['F44'].value = bond.coverage
@@ -545,11 +546,6 @@ def make_bond_warr(bond):
     ws['F18'].value = rating_amount
 
     wb.save(f'G(16)-{bond.bond_no}--CIC.{bond.contractor}-WARR.xlsx')
-
-
-
-
-
 
 
 def report_prf(bond):
