@@ -227,6 +227,7 @@ def make_bond_sty(bond):
     ws['F56'].value = f"{bond.date}, {str(year)}" 
     ws['C63'].value = bond.prop
     ws['H63'].value = manager
+    ws['B64'].value = f"Prop./Manager - {bond.contractor}"
 
     ws = wb['ACK'] 
 
@@ -234,15 +235,24 @@ def make_bond_sty(bond):
     first_line_ack = turntosentence(first_ack)
     second_line_ack = turntosentence(second_ack)
 
-    ws['J4'].value = 'G(16)-' + bond.bond_no
-    ws['G8'].value = f"{bond.date}, {str(year)}" 
-    ws['B14'].value = liss[0].upper()
-    ws['G14'].value = liss[1].upper()
-    ws['C23'].value = f"{bond.date}, {str(year)}" 
-    ws['A44'].value = first_line_ack.upper()
-    ws['A45'].value = second_line_ack.upper() + "PESOS ONLY"
-    ws['F44'].value = bond.coverage
-    ws['H57'].value = f"{bond.date}, {str(year)}" 
+    ws['J3'].value = 'G(16)-' + bond.bond_no
+    ws['G6'].value = f"{bond.date}, {str(year)}" 
+    ws['E10'].value = ctc
+    ws['I10'].value = ctc_date
+    ws['B12'].value = manager
+    ws['E12'].value = ctc_manager
+    ws['I12'].value = ctc_manager_date
+    ws['B13'].value = bond.prop
+    ws['G13'].value = bond.prop_address
+    ws['C21'].value = f"{bond.date}, {str(year)}"
+    ws['C37'].value = f"{manager}-BRANCH MANAGER"
+    ws['A43'].value = first_line_ack.upper()
+    ws['A44'].value = second_line_ack.upper() + "PESOS ONLY"
+    ws['F43'].value = bond.coverage
+    ws['H50'].value = manager
+    ws['H56'].value = f"{bond.date}, {str(year)}"
+    ws['J58'].value = f"{ctc_manager}"
+    ws['H59'].value = f"*{ctc_manager_date}"
     
     ws = wb['IND']
 
@@ -264,24 +274,24 @@ def make_bond_sty(bond):
         fraction = amount_split[1][0:2]
 
     ws['J1'].value = 'G(16)-' + bond.bond_no
-    ws['A17'].value = bond.contractor
+    ws['B17'].value = bond.contractor
     ws['G17'].value = first_line_ind.upper()
-    ws['A18'].value = second_line_ind.upper() + 'PESOS ONLY'
+    ws['B18'].value = second_line_ind.upper() + 'PESOS ONLY'
     ws['F18'].value = bond.coverage
-    ws['A19'].value = bond.agency.upper()
+    ws['B19'].value = bond.agency.upper()
     ws['G24'].value = rating_in_words.upper()
     ws['B25'].value = f'AND {fraction}/100 ONLY'
     ws['F25'].value = rating_amount
 
     ws = wb['INDBK']
 
-    ws['I24'].value = f"{bond.date}, {str(year)}" 
-    ws['B26'].value = liss[0].upper() #PROPIETOR
-    ws['B27'].value = bond.contractor
-    ws['H26'].value = liss[1].upper() #ADDRESS
-    ws['H44'].value = f"{bond.date}, {str(year)}" 
-    ws['B52'].value = liss[0].upper() #PROPIETOR
-    ws['G52'].value = liss[1].upper() #ADDRESS
+    ws['I25'].value = f"{bond.date}, {str(year)}" 
+    ws['B27'].value = bond.prop #PROPIETOR
+    ws['B28'].value = bond.contractor
+    ws['H27'].value = bond.prop_address #ADDRESS
+    ws['H45'].value = f"{bond.date}, {str(year)}" 
+    ws['B53'].value = bond.prop  #PROPIETOR
+    ws['G53'].value = bond.prop_address #ADDRESS
 
     ws = wb['OR']
 
@@ -301,9 +311,9 @@ def make_bond_sty(bond):
     first_line_or = turntosentence(first_or)
     second_line_or = turntosentence(second_or) +'PESOS ' f'and {fraction_or}/100 ONLY'
 
-    ws['A5'].value = f"{bond.date}, {str(year)}" 
+    ws['B5'].value = f"{bond.date}, {str(year)}" 
     ws['B6'].value = bond.contractor
-    ws['B8'].value = liss[1]
+    ws['B8'].value = bond.prop_address
     ws['B12'].value = first_line_or.upper()
     ws['B13'].value = second_line_or.upper()
     ws['B15'].value = 'G(16)-' + bond.bond_no
